@@ -15,22 +15,28 @@
     "main";
 }
 
+.Header {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 30px;
+  border: solid yellow, 1px;
+}
+
 .App-header {
-  border: solid red, 1px;
+  border: solid yellow, 1px;
   grid-area: header;
-  background-color: #955e42;
+  background-color: #e26a2c;
 }
 
 .Nav {
   border: solid blue 1px;
   grid-area: nav;
-  background-color: #9c914f;
+  background-color: #ff8243;
 }
 
 .Reviews {
   border: solid green 1px;
   grid-area: main;
-  background-color: #748e54;
+  background-color: #fda65d;
 }
 
 .GameImage {

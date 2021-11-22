@@ -16,6 +16,8 @@ export default function Nav() {
 
   return (
     <nav className="Nav">
+      {/* <Link key="home" to="/" />
+      Home</Link> */}
       {categories.map((category) => {
         return (
           <Link key={category.slug} to={`/categories/${category.slug}`}>

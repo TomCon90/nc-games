@@ -32,7 +32,6 @@ export const getReviewsByCategoryName = (slug) => {
   return hallofgameApi.get("/reviews").then((res) => {
     const reviewArray = res.data.reviews;
     let matches = reviewArray.filter((review) => {
-      console.log(review);
       return review.category === slug;
     });
     return matches;

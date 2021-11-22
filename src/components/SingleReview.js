@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
-import { getReviewsByReviewId, getCommentsByReviewId } from "../utils/api";
+import { getReviewsByReviewId } from "../utils/api";
 import { useState, useEffect } from "react";
+import Comments from "./Comments";
 
 export default function ReviewInfo() {
   const { review_id } = useParams();
@@ -10,12 +11,6 @@ export default function ReviewInfo() {
   useEffect(() => {
     getReviewsByReviewId(review_id).then((review) => {
       setReview(review);
-    });
-  }, [review_id]);
-
-  useEffect(() => {
-    getCommentsByReviewId(review_id).then((comments) => {
-      setComments(comments);
     });
   }, [review_id]);
 
@@ -30,17 +25,7 @@ export default function ReviewInfo() {
         src={review.review_img_url}
         alt={review.title}
       />
-      <ul className="CommentsList">
-        {comments.map((comment) => {
-          return (
-            <li key={comment.created_at}>
-              <h3>{comment.body}</h3>
-              <p>Author: {comment.author}</p>
-              <p>Votes: {comment.votes}</p>
-            </li>
-          );
-        })}
-      </ul>
+      <Comments />
     </main>
   );
 }
