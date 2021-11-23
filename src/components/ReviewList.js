@@ -17,10 +17,18 @@ export default function ReviewList() {
       <ul className="ReviewList">
         {reviews.map((review) => {
           return (
-            <li key={review.review_id}>
+            <li className="ReviewSnapshot" key={review.review_id}>
               <Link to={`/reviews/${review.review_id}`}>
                 <h3>{review.title}</h3>
               </Link>
+              <p>Author: {review.owner}</p>
+              <p>Votes: {review.votes}</p>
+              <p>Comments: {review.comment_count}</p>
+              <img
+                className="HomeReviewImage"
+                src={review.review_img_url}
+                alt={review.title}
+              />
             </li>
           );
         })}

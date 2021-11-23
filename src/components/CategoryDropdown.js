@@ -9,8 +9,8 @@ export default function CategoryDropdown({ categories }) {
   };
 
   return (
-    <select onChange={handleSelect}>
-      <option value="Select Category" selected="true" disabled>
+    <select onChange={handleSelect} value="Select Category">
+      <option selected={true} disabled>
         Select Category
       </option>
       {categories.map((category) => {

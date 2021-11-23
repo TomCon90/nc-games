@@ -18,7 +18,9 @@ export default function Comments() {
 
     return (
       <div>
-        <button onClick={toggleIsOpen}>{isOpen ? "Close" : "Open"}</button>
+        <button onClick={toggleIsOpen}>
+          {isOpen ? "Close Comments" : "View Comments"}
+        </button>
         {isOpen && children}
       </div>
     );
