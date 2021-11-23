@@ -17,9 +17,12 @@ export default function ReviewInfo() {
   return (
     <main>
       <h1>{review.title}</h1>
-      <p>Category: {review.category}</p>
+      <p>
+        Category:
+        {review.category}
+      </p>
       <p>{review.review_body}</p>
-      <p>Votes: {review.votes}</p>
+      <button>Votes: {review.votes}</button>
       <img
         className="GameImage"
         src={review.review_img_url}

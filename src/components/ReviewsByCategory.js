@@ -1,26 +1,41 @@
 import { useParams } from "react-router-dom";
-import { getReviewsByCategoryName } from "../utils/api";
+import {
+  getReviewsByCategoryName,
+  getCategoriesByCategoryName,
+} from "../utils/api";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getReviews } from "../utils/api";
 
 export default function ReviewsByCategory() {
-  const { slug } = useParams();
+  const { category } = useParams();
   const [reviews, setReviews] = useState([]);
+  const [categoryName, setCategoryName] = useState({});
 
   useEffect(() => {
-    getReviewsByCategoryName(slug).then((reviews) => {
+    getReviewsByCategoryName(category).then((reviews) => {
       setReviews(reviews);
     });
-  }, [slug]);
+  }, [category]);
 
+  useEffect(() => {
+    getCategoriesByCategoryName(category).then((categoryName) => {
+      setCategoryName(categoryName);
+    });
+  }, [category]);
+
+  console.log(categoryName);
+  const capitalised = category.charAt(0).toUpperCase() + category.slice(1);
   return (
     <main className="ReviewsByCategories">
+      <h2>{capitalised} Games</h2>
+      <p>{categoryName.description}</p>
       {reviews.map((review) => {
         return (
-          <Link key={review.review_id} to={`/reviews/${review.review_id}`}>
-            {review.title}
-          </Link>
+          <li key={review.review_id}>
+            <Link key={review.review_id} to={`/reviews/${review.review_id}`}>
+              {review.title}
+            </Link>
+          </li>
         );
       })}
     </main>

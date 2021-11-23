@@ -28,12 +28,22 @@ export const getCommentsByReviewId = (review_id) => {
   });
 };
 
-export const getReviewsByCategoryName = (slug) => {
+export const getReviewsByCategoryName = (category) => {
   return hallofgameApi.get("/reviews").then((res) => {
     const reviewArray = res.data.reviews;
     let matches = reviewArray.filter((review) => {
-      return review.category === slug;
+      return review.category === category;
     });
     return matches;
+  });
+};
+
+export const getCategoriesByCategoryName = (category) => {
+  return hallofgameApi.get("/categories").then((res) => {
+    const categoriesArray = res.data.categories;
+    let matches = categoriesArray.filter((cat) => {
+      return cat.slug === category;
+    });
+    return matches[0];
   });
 };

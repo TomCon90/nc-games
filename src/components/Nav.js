@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCategories } from "../utils/api";
+import CategoryDropdown from "./CategoryDropdown";
 import { useContext } from "react";
 import { UserContext } from "../contexts/user";
 
@@ -16,15 +17,13 @@ export default function Nav() {
 
   return (
     <nav className="Nav">
-      {/* <Link key="home" to="/" />
-      Home</Link> */}
-      {categories.map((category) => {
-        return (
-          <Link key={category.slug} to={`/categories/${category.slug}`}>
-            {category.slug}
-          </Link>
-        );
-      })}
+      <Link key="home" to="/">
+        Home
+      </Link>
+      <Link key="login" to="/">
+        Login
+      </Link>
+      <CategoryDropdown categories={categories} />
     </nav>
   );
 }
