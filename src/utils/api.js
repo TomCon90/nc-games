@@ -92,6 +92,7 @@ export const patchVotes = (review_id, increment) => {
 };
 
 export const postComment = (review_id, comment) => {
+  comment.author = comment.username;
   return hallofgameApi
     .post(`/reviews/${review_id}/comments`, comment)
     .then((res) => {

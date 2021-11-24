@@ -30,26 +30,14 @@ export default function Comments({ currentUser }) {
     );
   };
 
-  // const handleClick = () => {
-  //   setAddedVotes((prevVotes) => {
-  //     return prevVotes + 1;
-  //   });
-  //   patchVotes(review_id, 1).catch(() => {
-  //     setIsError(true);
-  //     setAddedVotes((prevVotes) => {
-  //       return prevVotes - 1;
-  //     });
-  //   });
-  // };
-  // const handleChange = () => {};
+  //would like author to appear in optimal render, not just after post
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(e.target.form[0].value, "HERE");
     const newComment = {
       body: e.target.form[0].value,
       votes: 0,
-      username: currentUser.username,
+      author: currentUser.username,
     };
     if (newComment.body !== "") {
       setComments((prevComments) => {
@@ -60,8 +48,9 @@ export default function Comments({ currentUser }) {
     }
   };
 
+  //would like to add optimal renderind for delete
+
   const handleDelete = (comment_id) => {
-    console.log("IN HANDLE DELETE");
     deleteComment(comment_id);
   };
 
@@ -94,7 +83,12 @@ export default function Comments({ currentUser }) {
                 <button>Upvote</button>
                 <button>Downvote</button>
                 {match ? (
-                  <button onClick={handleDelete(comment.comment_id)}>
+                  <button
+                    type="submit"
+                    onClick={() => {
+                      handleDelete(comment.comment_id);
+                    }}
+                  >
                     Delete
                   </button>
                 ) : null}

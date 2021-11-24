@@ -5,34 +5,54 @@ import { useState } from "react";
 import { getCategoriesByCategoryName } from "../../utils/api";
 
 export default function ReviewList({ reviews, setReviews, category }) {
-  // const [categoryName, setCategoryName] = useState({
-  //   description: "All Reviews below",
-  // });
+  const [isLoading, setLoading] = useState(true);
+  const [err, setErr] = useState(null);
+  const [categoryName, setCategoryName] = useState({
+    description: "All Reviews below",
+  });
 
   //Would like to take hooks in to a separate file with more time
 
-  // useEffect(() => {
-  //   getCategoriesByCategoryName(category).then((categoryName) => {
-  //     setCategoryName(categoryName);
-  //     console.log(categoryName.description);
-  //   });
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    getCategoriesByCategoryName(category)
+      .then((categoryName) => {
+        setLoading(false);
+        setCategoryName(categoryName);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setErr("Something has gone wrong!");
+      });
+  }, []);
 
   useEffect(() => {
-    getReviews().then((reviews) => {
-      setReviews(reviews);
-    });
+    setLoading(true);
+    getReviews()
+      .then((reviews) => {
+        setLoading(false);
+        setReviews(reviews);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setErr("Something has gone wrong!");
+      });
   }, [setReviews]);
 
   // const capitalized = category.charAt(0).toUpperCase() + category.slice(1);
 
+  //would like to conditionally render a description of the category below and use code above to capitalise the Title
+
+  let match = category.length !== 0;
+  if (isLoading) return <p>Loading...</p>;
   return (
     <main className="Reviews">
       <h2>Reviews</h2>
-
-      {/* <h2>{category} Games</h2>
-      <p>{categoryName.description}</p> */}
-
+      {match ? (
+        <>
+          <h2>{category} Games</h2>
+        </>
+      ) : null}
       <ul className="ReviewList">
         {reviews.map((review) => {
           return (
