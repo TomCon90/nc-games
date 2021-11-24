@@ -1,5 +1,9 @@
 import { useParams } from "react-router-dom";
-import { getCommentsByReviewId, postComment } from "../../utils/api";
+import {
+  getCommentsByReviewId,
+  postComment,
+  deleteComment,
+} from "../../utils/api";
 import { useState, useEffect } from "react";
 
 export default function Comments({ currentUser }) {
@@ -56,6 +60,11 @@ export default function Comments({ currentUser }) {
     }
   };
 
+  const handleDelete = (comment_id) => {
+    console.log("IN HANDLE DELETE");
+    deleteComment(comment_id);
+  };
+
   return (
     <div className="ReviewComments">
       <Expandable>
@@ -75,6 +84,8 @@ export default function Comments({ currentUser }) {
         </form>
         <ul className="CommentsList">
           {comments.map((comment) => {
+            let match = currentUser.username === comment.author;
+
             return (
               <li key={comment.created_at}>
                 <h3>{comment.body}</h3>
@@ -82,6 +93,11 @@ export default function Comments({ currentUser }) {
                 <p>Votes: {comment.votes}</p>
                 <button>Upvote</button>
                 <button>Downvote</button>
+                {match ? (
+                  <button onClick={handleDelete(comment.comment_id)}>
+                    Delete
+                  </button>
+                ) : null}
               </li>
             );
           })}

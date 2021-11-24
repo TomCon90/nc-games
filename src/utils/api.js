@@ -92,9 +92,16 @@ export const patchVotes = (review_id, increment) => {
 };
 
 export const postComment = (review_id, comment) => {
-  console.log(comment);
   return hallofgameApi
     .post(`/reviews/${review_id}/comments`, comment)
+    .then((res) => {
+      return res.data;
+    });
+};
+
+export const deleteComment = (comment_id) => {
+  return hallofgameApi
+    .delete(`/comments/${comment_id}`, comment_id)
     .then((res) => {
       return res.data;
     });
