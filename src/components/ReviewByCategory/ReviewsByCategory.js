@@ -2,11 +2,13 @@ import { useParams } from "react-router-dom";
 import {
   getReviewsByCategoryName,
   getCategoriesByCategoryName,
-} from "../utils/api";
+} from "../../utils/api";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function ReviewsByCategory() {
+  console.log("IN REVIEWS BY CATEGORY");
+
   const { category } = useParams();
   const [reviews, setReviews] = useState([]);
   const [categoryName, setCategoryName] = useState({});
@@ -23,11 +25,11 @@ export default function ReviewsByCategory() {
     });
   }, [category]);
 
-  console.log(categoryName);
-  const capitalised = category.charAt(0).toUpperCase() + category.slice(1);
+  const capitalized = category.charAt(0).toUpperCase() + category.slice(1);
+
   return (
     <main className="Reviews">
-      <h2>{capitalised} Games</h2>
+      <h2>{capitalized} Games</h2>
       <p>{categoryName.description}</p>
       <ul className="ReviewList">
         {reviews.map((review) => {

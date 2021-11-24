@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getCategories } from "../utils/api";
-import CategoryDropdown from "./CategoryDropdown";
-import { useContext } from "react";
-import { UserContext } from "../contexts/user";
+import { getCategories } from "../../utils/api";
+import CategoryDropdown from "../ReviewByCategory/CategoryDropdown";
+// import { useContext } from "react";
+// import { UserContext } from "../contexts/user";
 
 export default function Nav() {
   const [categories, setCategories] = useState([]);

@@ -11,7 +11,16 @@ export const getCategories = () => {
 };
 
 export const getReviews = () => {
-  return hallofgameApi.get("/reviews").then((res) => {
+  return hallofgameApi.get(`/reviews`).then((res) => {
+    return res.data.reviews;
+  });
+};
+
+//QUERY ATTEMPT
+export const getReviewsByCategoryName = (path) => {
+  console.log(path, "<<<inutil");
+  return hallofgameApi.get(`/reviews${path}`).then((res) => {
+    console.log(res.data.reviews, "FILTERED REVIEWS");
     return res.data.reviews;
   });
 };
@@ -28,15 +37,17 @@ export const getCommentsByReviewId = (review_id) => {
   });
 };
 
-export const getReviewsByCategoryName = (category) => {
-  return hallofgameApi.get("/reviews").then((res) => {
-    const reviewArray = res.data.reviews;
-    let matches = reviewArray.filter((review) => {
-      return review.category === category;
-    });
-    return matches;
-  });
-};
+// export const getReviewsByCategoryName = (category) => {
+//   return hallofgameApi.get(`/reviews?category=${category}`).then((res) => {
+//     // const reviewArray = res.data.reviews;
+//     // let matches = reviewArray.filter((review) => {
+//     //   return review.category === category;
+//     // });
+//     // return matches;
+//     console.log(res.data.reviews);
+//     return res.data.reviews;
+//   });
+// };
 
 export const getCategoriesByCategoryName = (category) => {
   return hallofgameApi.get("/categories").then((res) => {
@@ -46,4 +57,12 @@ export const getCategoriesByCategoryName = (category) => {
     });
     return matches[0];
   });
+};
+
+export const patchVotes = (review_id, increment) => {
+  return hallofgameApi
+    .patch(`/reviews/${review_id}`, { inc_votes: increment })
+    .then((res) => {
+      return res.data;
+    });
 };

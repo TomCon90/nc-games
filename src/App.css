@@ -21,6 +21,8 @@
   grid-area: header;
   border: solid yellow, 1px;
   background-color: #e26a2c;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .Nav {
@@ -35,6 +37,48 @@
   background-color: #fda65d;
   display: grid;
   grid-template-rows: min-content, auto;
+  padding: 10px;
+  grid-area: main;
+}
+
+.ReviewCard {
+  padding: 30px;
+  margin: 30px;
+  border: solid pink 1px;
+  background-color: #ab6d23;
+  grid-template-areas:
+    "header header"
+    "p"
+    "p"
+    "p"
+    "button button"
+    "img";
+}
+
+.ReviewCard h1 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  grid-area: header;
+}
+
+.ReviewCard p {
+  margin: 20px;
+  font-family: sans-serif;
+  font-size: 15px;
+  grid-area: p;
+}
+
+.ReviewCard .Reviews button {
+  background-color: aqua;
+  font-size: 40;
+  width: min-content;
+  margin-left: 50%;
+  text-align: center;
+  grid-area: button;
+}
+
+.ReviewCard img {
+  border-radius: 10px;
+  grid-area: img;
 }
 
 .ReviewList {
@@ -44,6 +88,7 @@
 
 .ReviewSnapshot {
   border: solid black 2px;
+  background-color: #ab6d23;
   margin: 5px;
   width: 400px;
 }
@@ -51,11 +96,15 @@
 .HomeReviewImage {
   max-height: 80px;
   max-width: 80px;
+  border-radius: 10px;
 }
 
 .GameImage {
   max-height: 400px;
   max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .ReviewList {

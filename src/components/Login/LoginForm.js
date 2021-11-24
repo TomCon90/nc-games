@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { UserContext } from "../contexts/user";
+import { useState, useContext } from "react";
+import { UserContext } from "../../contexts/user";
 
 export default function Login() {
   const [username, setUsername] = useState("");

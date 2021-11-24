@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getCommentsByReviewId } from "../utils/api";
+import { getCommentsByReviewId } from "../../utils/api";
 import { useState, useEffect } from "react";
 
 export default function Comments() {
@@ -29,6 +29,7 @@ export default function Comments() {
   return (
     <div className="ReviewComments">
       <Expandable>
+        <textarea>Add a Comment</textarea>
         <ul className="CommentsList">
           {comments.map((comment) => {
             return (
