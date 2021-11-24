@@ -1,29 +1,44 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getReviews } from "../../utils/api";
 import { getCategories } from "../../utils/api";
 import CategoryDropdown from "../ReviewByCategory/CategoryDropdown";
 // import { useContext } from "react";
 // import { UserContext } from "../contexts/user";
+import LoginForm from "../Login/LoginForm";
+import Community from "../Community";
 
-export default function Nav() {
+export default function Nav({ reviews, setReviews, category, setCategory }) {
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
   //   const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     getCategories().then((categories) => {
       setCategories(categories);
     });
-  }, []);
+  }, [reviews]);
+
+  const handleClick = () => {
+    getReviews().then((reviewsFromApi) => {
+      setReviews(reviewsFromApi);
+    });
+    navigate(`/`);
+  };
 
   return (
     <nav className="Nav">
-      <Link key="home" to="/">
+      <button onClick={handleClick} key="home" to="/">
         Home
-      </Link>
-      <Link key="login" to="/">
-        Login
-      </Link>
-      <CategoryDropdown categories={categories} />
+      </button>
+      <button onClick={navigate(`/api/users`)}>Community</button>
+      <LoginForm />
+      <CategoryDropdown
+        setReviews={setReviews}
+        categories={categories}
+        setCategory={setCategory}
+        category={category}
+      />
     </nav>
   );
 }

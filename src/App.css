@@ -29,6 +29,7 @@
   border: solid blue 1px;
   grid-area: nav;
   background-color: #ff8243;
+  padding: 10px;
 }
 
 .Reviews {
@@ -109,4 +110,10 @@
 
 .ReviewList {
   list-style-type: none;
+}
+
+.userAvatar {
+  border-radius: 20px;
+  max-height: 80px;
+  max-width: 80px;
 }
