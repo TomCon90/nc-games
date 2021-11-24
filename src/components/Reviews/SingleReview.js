@@ -3,7 +3,7 @@ import { getReviewsByReviewId, patchVotes } from "../../utils/api";
 import { useState, useEffect } from "react";
 import Comments from "./Comments";
 
-export default function ReviewInfo() {
+export default function ReviewInfo({ currentUser }) {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [addedVotes, setAddedVotes] = useState(0);
@@ -76,7 +76,7 @@ export default function ReviewInfo() {
           alt={review.title}
         />
       </div>
-      <Comments />
+      <Comments currentUser={currentUser} review_id={review_id} />
     </main>
   );
 }

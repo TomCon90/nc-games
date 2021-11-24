@@ -18,6 +18,12 @@ import { useState } from "react";
 // };
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({
+    username: "jessjelly",
+    avatar_url:
+      "https://vignette.wikia.nocookie.net/mrmen/images/4/4f/MR_JELLY_4A.jpg/revision/latest?cb=20180104121141",
+    name: "Jess Jelly",
+  });
   // const { user, setUser, isLoggedIn, logout } = useContext(UserContext);
   const [reviews, setReviews] = useState([]);
   const [category, setCategory] = useState([]);
@@ -53,7 +59,10 @@ function App() {
               />
             }
           />
-          <Route path="/reviews/:review_id" element={<SingleReview />} />
+          <Route
+            path="/reviews/:review_id"
+            element={<SingleReview currentUser={currentUser} />}
+          />
           <Route path={"/users"} element={<Community />} />
           <Route
             path={"/users/:username"}

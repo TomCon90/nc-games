@@ -90,3 +90,12 @@ export const patchVotes = (review_id, increment) => {
       return res.data;
     });
 };
+
+export const postComment = (review_id, comment) => {
+  console.log(comment);
+  return hallofgameApi
+    .post(`/reviews/${review_id}/comments`, comment)
+    .then((res) => {
+      return res.data;
+    });
+};
