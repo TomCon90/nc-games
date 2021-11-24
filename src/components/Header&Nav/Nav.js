@@ -26,12 +26,16 @@ export default function Nav({ reviews, setReviews, category, setCategory }) {
     navigate(`/`);
   };
 
+  const handleOtherClick = () => {
+    navigate("/users");
+  };
+
   return (
     <nav className="Nav">
       <button onClick={handleClick} key="home" to="/">
         Home
       </button>
-      <button onClick={navigate(`/api/users`)}>Community</button>
+      <button onClick={handleOtherClick}>Community</button>
       <LoginForm />
       <CategoryDropdown
         setReviews={setReviews}

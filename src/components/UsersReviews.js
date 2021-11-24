@@ -1,14 +1,9 @@
 import { useParams } from "react-router";
-import {
-  getReviews,
-  getReviewsbyUsername,
-  getUserbyUsername,
-  getCommentsbyUsername,
-} from "../utils/api";
+import { getReviewsbyUsername, getUserbyUsername } from "../utils/api";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function UsersReviews({ reviews }) {
+export default function UsersReviews() {
   const { username } = useParams();
   const [userReviews, setUserReviews] = useState([]);
 

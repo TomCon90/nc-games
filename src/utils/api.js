@@ -10,6 +10,12 @@ export const getCategories = () => {
   });
 };
 
+export const getAllUsers = () => {
+  return hallofgameApi.get("/users").then((res) => {
+    return res.data;
+  });
+};
+
 export const getReviews = () => {
   return hallofgameApi.get(`/reviews`).then((res) => {
     return res.data.reviews;
