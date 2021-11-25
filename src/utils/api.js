@@ -18,12 +18,10 @@ export const getAllUsers = () => {
 
 export const getReviews = () => {
   return hallofgameApi.get(`/reviews`).then((res) => {
-    console.log(res.data.reviews);
     return res.data.reviews;
   });
 };
 
-//QUERY ATTEMPT
 export const getReviewsByCategoryName = (path) => {
   return hallofgameApi.get(`/reviews${path}`).then((res) => {
     return res.data.reviews;
@@ -93,6 +91,8 @@ export const patchVotes = (review_id, increment) => {
 };
 
 export const patchCommentVotes = (comment_id, increment) => {
+  console.log(comment_id);
+  console.log(increment);
   return hallofgameApi
     .patch(`/comments/${comment_id}`, { inc_votes: increment })
     .then((res) => {
@@ -115,4 +115,10 @@ export const deleteComment = (comment_id) => {
     .then((res) => {
       return res.data;
     });
+};
+
+export const getSorted = (path) => {
+  return hallofgameApi.get(`/reviews${path}`).then((res) => {
+    return res.data.reviews;
+  });
 };

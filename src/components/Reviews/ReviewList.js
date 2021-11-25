@@ -62,8 +62,6 @@ export default function ReviewList({ reviews, setReviews, category }) {
       ) : null}
       <ul className="ReviewList">
         {reviews.map((review) => {
-          // console.log(review, "<<<< REVIEW");
-          // console.log(review.comment_count);
           return (
             <li className="ReviewSnapshot" key={review.review_id}>
               <h3>{review.title}</h3>
@@ -71,10 +69,11 @@ export default function ReviewList({ reviews, setReviews, category }) {
                 <p>Author: {review.owner}</p>
               </Link>
               <p>Votes: {review.votes}</p>
-              <p>Comments: {review.comment_count}</p>
+              {/* <p> Posted: {review.created_at}</p> */}
               <Link to={`/reviews/${review.review_id}`}>
                 <button>Read this review</button>
               </Link>
+
               <img
                 className="HomeReviewImage"
                 src={review.review_img_url}

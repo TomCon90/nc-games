@@ -1,24 +1,17 @@
 import { useParams } from "react-router-dom";
-import {
-  getCommentsByReviewId,
-  postComment,
-  deleteComment,
-  patchCommentVotes,
-} from "../../utils/api";
+import { getCommentsByReviewId, postComment } from "../../utils/api";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user";
+import CommentVoteHandler from "./CommentVoteHandler";
 
 export default function Comments() {
   const { review_id } = useParams();
   const [comments, setComments] = useState([]);
-  const [addedVotes, setAddedVotes] = useState(0);
-  const [decreasedVotes, setDecreasedVotes] = useState(0);
   const [isLoading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
-  const [isError, setIsError] = useState(false);
-  const [downError, setDownError] = useState(false);
   const { currentUser } = useContext(UserContext);
+
   useEffect(() => {
     setLoading(true);
     getCommentsByReviewId(review_id)
@@ -39,7 +32,7 @@ export default function Comments() {
   //expanded section closes when changed. Would like to fix this.
 
   const Expandable = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const toggleIsOpen = () => setIsOpen((prevIsOpen) => !prevIsOpen);
 
     return (
@@ -71,47 +64,12 @@ export default function Comments() {
     }
   };
 
-  //would like to add optimal rendering for delete
-  //work to do on errors here
-
-  const handleDelete = (comment_id) => {
-    deleteComment(comment_id);
-  };
-
-  const handleVoteClick = (comment_id) => {
-    setAddedVotes((prevVotes) => {
-      return prevVotes + 1;
-    });
-    patchCommentVotes(comment_id, 1).catch(() => {
-      setIsError(true);
-      setAddedVotes((prevVotes) => {
-        return prevVotes - 1;
-      });
-    });
-  };
-
-  const handleDownVoteClick = (comment_id) => {
-    setDecreasedVotes((prevVotes) => {
-      return prevVotes - 1;
-    });
-    patchCommentVotes(comment_id, -1).catch(() => {
-      setIsError(true);
-      setDecreasedVotes((prevVotes) => {
-        return prevVotes + 1;
-      });
-    });
-  };
-
-  const isDisabled = addedVotes > 4;
-  const downDisabled = decreasedVotes < -4;
-
   if (isLoading) return <p className="Reviews">Be with you in a mo...</p>;
   if (err) return <p className="Reviews">{err}</p>;
   return (
     <div className="ReviewComments">
       <Expandable>
         <form>
-          <legend>Please enter your details to set up a user account</legend>
           <p> Write a comment </p>
           <input
             type="text"
@@ -126,44 +84,10 @@ export default function Comments() {
         </form>
         <ul className="CommentsList">
           {comments.map((comment) => {
-            let match = currentUser.username === comment.author;
-
             return (
-              <li key={comment.created_at}>
-                <h3>{comment.body}</h3>
-                <p>Author: {comment.author}</p>
-                <p>Votes: {comment.votes + addedVotes}</p>
-                <button
-                  onClick={() => {
-                    handleVoteClick(comment.comment_id);
-                  }}
-                  className="VoteButton"
-                  disabled={isDisabled}
-                >
-                  Upvote
-                </button>
-                {isError ? <p>Something went wrong!</p> : null}
-                <button
-                  onClick={() => {
-                    handleDownVoteClick(comment.comment_id);
-                  }}
-                  className="VoteButton"
-                  disabled={downDisabled}
-                >
-                  Downvote
-                </button>
-                {downError ? <p>Something went wrong!</p> : null}
-                {match ? (
-                  <button
-                    type="submit"
-                    onClick={() => {
-                      handleDelete(comment.comment_id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                ) : null}
-              </li>
+              <section>
+                <CommentVoteHandler comment={comment} />
+              </section>
             );
           })}
         </ul>
