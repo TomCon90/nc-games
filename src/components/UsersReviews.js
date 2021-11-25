@@ -6,21 +6,47 @@ import { Link } from "react-router-dom";
 export default function UsersReviews() {
   const { username } = useParams();
   const [userReviews, setUserReviews] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const [err, setErr] = useState(null);
 
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    getReviewsbyUsername(username).then((reviews) => {
-      setUserReviews(reviews);
-    });
+    setLoading(true);
+    getReviewsbyUsername(username)
+      .then((reviews) => {
+        setLoading(false);
+        setUserReviews(reviews);
+      })
+      .catch((err) => {
+        setLoading(false);
+        if (err.response.status === 404) {
+          setErr("Try again! This User Doesn't Exist");
+        } else {
+          setErr("Well this is embarrassing! Something has gone wrong!");
+        }
+      });
   }, [username]);
 
   useEffect(() => {
-    getUserbyUsername(username).then((user) => {
-      setUser(user);
-    });
+    setLoading(true);
+    getUserbyUsername(username)
+      .then((user) => {
+        setLoading(false);
+        setUser(user);
+      })
+      .catch((err) => {
+        setLoading(false);
+        if (err.response.status === 404) {
+          setErr("Try again! This User Doesn't Exist");
+        } else {
+          setErr("Well this is embarrassing! Something has gone wrong!");
+        }
+      });
   }, [username]);
 
+  if (isLoading) return <p className="Reviews">Be with you in a mo...</p>;
+  if (err) return <p className="Reviews">{err}</p>;
   return (
     <main className="Reviews">
       <div>

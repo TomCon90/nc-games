@@ -40,9 +40,9 @@ export default function ReviewInfo({ currentUser }) {
       });
     });
   };
-
-  const isDisabled = addedVotes > 4;
-  const downDisabled = decreasedVotes < -4;
+  console.log(review);
+  const isDisabled = addedVotes > 4 || currentUser === review.owner;
+  const downDisabled = decreasedVotes < -4 || review.votes < 1;
 
   return (
     <main className="Reviews">
@@ -59,7 +59,7 @@ export default function ReviewInfo({ currentUser }) {
           className="VoteButton"
           disabled={isDisabled}
         >
-          Upvote
+          YES
         </button>
         {downError ? <p>Something went wrong!</p> : null}
         <button
@@ -67,7 +67,7 @@ export default function ReviewInfo({ currentUser }) {
           className="VoteButton"
           disabled={downDisabled}
         >
-          Downvote
+          NO
         </button>
         {isError ? <p>Something went wrong!</p> : null}
         <img

@@ -22,7 +22,12 @@ export default function ReviewList({ reviews, setReviews, category }) {
       })
       .catch((err) => {
         setLoading(false);
-        setErr("Something has gone wrong!");
+        console.log(err);
+        if (err.response.status === 400) {
+          setErr("Try again! This Category Doesn't Exist");
+        } else {
+          setErr("Well this is embarrassing! Something has gone wrong!");
+        }
       });
   }, []);
 
@@ -31,11 +36,12 @@ export default function ReviewList({ reviews, setReviews, category }) {
     getReviews()
       .then((reviews) => {
         setLoading(false);
+
         setReviews(reviews);
       })
       .catch((err) => {
         setLoading(false);
-        setErr("Something has gone wrong!");
+        setErr("Well this is embarrassing! Something has gone wrong!");
       });
   }, [setReviews]);
 
@@ -44,7 +50,8 @@ export default function ReviewList({ reviews, setReviews, category }) {
   //would like to conditionally render a description of the category below and use code above to capitalise the Title
 
   let match = category.length !== 0;
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p className="Reviews">Be with you in a mo...</p>;
+  if (err) return <p className="Reviews">{err}</p>;
   return (
     <main className="Reviews">
       <h2>Reviews</h2>
@@ -55,6 +62,8 @@ export default function ReviewList({ reviews, setReviews, category }) {
       ) : null}
       <ul className="ReviewList">
         {reviews.map((review) => {
+          // console.log(review, "<<<< REVIEW");
+          // console.log(review.comment_count);
           return (
             <li className="ReviewSnapshot" key={review.review_id}>
               <h3>{review.title}</h3>
