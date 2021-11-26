@@ -42,8 +42,7 @@ export default function ReviewInfo() {
   };
 
   const isDisabled =
-    addedVotes > 4 ||
-    addedVotes < -4 ||
+    addedVotes !== 0 ||
     review.votes + addedVotes < 1 ||
     currentUser.username === review.owner;
 

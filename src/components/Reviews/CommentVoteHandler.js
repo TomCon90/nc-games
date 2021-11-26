@@ -40,8 +40,7 @@ export default function CommentVoteHandler({ comment }) {
   };
 
   const isDisabled =
-    addedVotes > 4 ||
-    addedVotes < -4 ||
+    addedVotes !== 0 ||
     comment.votes + addedVotes < 1 ||
     currentUser.username === comment.author;
   let match = currentUser.username === comment.author;

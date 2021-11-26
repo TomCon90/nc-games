@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllUsers } from "../utils/api";
 import { Link } from "react-router-dom";
 
-export default function Community() {
+export default function Community({ reviews }) {
   const [allUsers, setAllUsers] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
@@ -19,6 +19,8 @@ export default function Community() {
         setErr("Well this is embarrassing! Something has gone wrong!");
       });
   }, []);
+
+  console.log(allUsers);
 
   //want to link this to the specific details for each user.
 

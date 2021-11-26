@@ -48,7 +48,7 @@ export default function ReviewList({ reviews, setReviews, category }) {
   if (err) return <p className="Reviews">{err}</p>;
   return (
     <main className="Reviews">
-      <h2>Check out the Reivews below</h2>
+      <h2>Which Games are HOT and which are .... NOT!</h2>
       {match ? (
         <>
           <h2>{category} Games</h2>

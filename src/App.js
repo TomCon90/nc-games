@@ -45,7 +45,7 @@ function App() {
               }
             />
             <Route path="/reviews/:review_id" element={<SingleReview />} />
-            <Route path={"/users"} element={<Community />} />
+            <Route path={"/users"} element={<Community reviews={reviews} />} />
             <Route
               path={"/users/:username"}
               element={<UsersReviews reviews={reviews} />}
