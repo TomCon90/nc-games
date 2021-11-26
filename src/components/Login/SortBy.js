@@ -34,6 +34,12 @@ export default function SortBy({ setReviews }) {
       <option key="VotesDown" value="votes&order=ASC">
         Votes: Low to High
       </option>
+      <option key="Comments" value="comment_count">
+        Comments: High to Low
+      </option>
+      <option key="CommentsDown" value="comment_count&order=ASC">
+        Comments: Low to High
+      </option>
     </select>
   );
 }

@@ -58,6 +58,7 @@ export default function ReviewInfo() {
         <p>Category: {review.category}</p>
         <p>{review.review_body}</p>
         <p>Votes: {review.votes + addedVotes}</p>
+        <p>Comments: {review.comment_count}</p>
         <button
           onClick={handleClick}
           className="VoteButton"
@@ -79,7 +80,7 @@ export default function ReviewInfo() {
           alt={review.title}
         />
       </div>
-      <p>Comments: {review.comment_count}</p>
+
       <Comments currentUser={currentUser} review_id={review_id} />
     </main>
   );

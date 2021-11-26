@@ -65,6 +65,7 @@ export default function ReviewList({ reviews, setReviews, category }) {
                 <p>Author: {review.owner}</p>
               </Link>
               <p>Votes: {review.votes}</p>
+              <p>Comments: {review.comment_count}</p>
               {/* <p> Posted: {review.created_at}</p> */}
               <Link to={`/reviews/${review.review_id}`}>
                 <button>Read this review</button>
