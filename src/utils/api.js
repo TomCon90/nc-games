@@ -56,7 +56,7 @@ export const getCategoriesByCategoryName = (category) => {
   }
 };
 
-export const getReviewsbyUsername = (username) => {
+export const getReviewsByUsername = (username) => {
   return hallofgameApi.get(`/reviews`).then((res) => {
     const reviewsArray = res.data.reviews;
     let matches = reviewsArray.filter((review) => {
@@ -66,13 +66,13 @@ export const getReviewsbyUsername = (username) => {
   });
 };
 
-export const getUserbyUsername = (username) => {
+export const getUserByUsername = (username) => {
   return hallofgameApi.get(`/users/${username}`).then((res) => {
     return res.data;
   });
 };
 
-export const getCommentsbyUsername = (username) => {
+export const getCommentsByUsername = (username) => {
   return hallofgameApi.get(`/comments`).then((res) => {
     const commentsArray = res.data.comments;
     let matches = commentsArray.filter((comment) => {
@@ -91,8 +91,6 @@ export const patchVotes = (review_id, increment) => {
 };
 
 export const patchCommentVotes = (comment_id, increment) => {
-  console.log(comment_id);
-  console.log(increment);
   return hallofgameApi
     .patch(`/comments/${comment_id}`, { inc_votes: increment })
     .then((res) => {

@@ -1,22 +1,22 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/user";
-import { getUserbyUsername } from "../../utils/api";
+import { getUserByUsername } from "../../utils/api";
 
 export default function Login() {
   const { setCurrentUser } = useContext(UserContext);
   const [err, setErr] = useState(null);
-  // const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    getUserbyUsername(e.target.form[0].value)
+    getUserByUsername(e.target.form[0].value)
       .then((user) => {
         setCurrentUser(user);
       })
       .catch((err) => {
         if (err.response.status === 404) {
-          // setIsError(true);
+          setIsError(true);
           setErr("This user does not exist!");
           return <p>This User doesn't exist</p>;
         } else {
@@ -32,7 +32,7 @@ export default function Login() {
     return (
       <div>
         <button onClick={toggleIsOpen}>
-          {isOpen ? "Close Login" : "LogIn"}
+          {isOpen ? "Close" : "Change User"}
         </button>
         {isOpen && children}
       </div>
@@ -40,9 +40,10 @@ export default function Login() {
   };
 
   // would like the option of logging in to remain after an incorrect user rater than only on the refresh
+
   if (err) return <p>This User Doesn't Exist... yet!</p>;
   return (
-    <div className="Login">
+    <div className="NavSelector">
       <Expandable>
         <form>
           <label>
@@ -50,13 +51,13 @@ export default function Login() {
             <input
               type="text"
               name="username"
-              id="usernam"
+              id="username"
               placeholder="username"
               required={true}
             ></input>
           </label>
           <button type="submit" id="submit" onClick={handleSubmit}>
-            Login
+            Change User
           </button>
         </form>
       </Expandable>

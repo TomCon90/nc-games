@@ -69,12 +69,12 @@ export default function Comments() {
   return (
     <div className="ReviewComments">
       <Expandable>
-        <form>
+        <form className="PostComment">
           <p> Write a comment </p>
           <input
             type="text"
             name="comment"
-            id="comment"
+            id="CommentBox"
             placeholder="comment"
             required={true}
           ></input>
@@ -85,7 +85,7 @@ export default function Comments() {
         <ul className="CommentsList">
           {comments.map((comment) => {
             return (
-              <section>
+              <section className="CommentCard">
                 <CommentVoteHandler comment={comment} />
               </section>
             );

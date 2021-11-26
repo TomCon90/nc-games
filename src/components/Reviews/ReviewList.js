@@ -1,15 +1,12 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { getReviews } from "../../utils/api";
-import { useState } from "react";
-import { getCategoriesByCategoryName } from "../../utils/api";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { getReviews, getCategoriesByCategoryName } from "../../utils/api";
 
 export default function ReviewList({ reviews, setReviews, category }) {
   const [isLoading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
-  const [categoryName, setCategoryName] = useState({
-    description: "All Reviews below",
-  });
+  const [categoryName, setCategoryName] = useState({});
+  let { search } = useLocation();
 
   //Would like to take hooks in to a separate file with more time
 
@@ -22,7 +19,6 @@ export default function ReviewList({ reviews, setReviews, category }) {
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err);
         if (err.response.status === 400) {
           setErr("Try again! This Category Doesn't Exist");
         } else {
@@ -36,7 +32,6 @@ export default function ReviewList({ reviews, setReviews, category }) {
     getReviews()
       .then((reviews) => {
         setLoading(false);
-
         setReviews(reviews);
       })
       .catch((err) => {
@@ -45,21 +40,22 @@ export default function ReviewList({ reviews, setReviews, category }) {
       });
   }, [setReviews]);
 
-  // const capitalized = category.charAt(0).toUpperCase() + category.slice(1);
-
   //would like to conditionally render a description of the category below and use code above to capitalise the Title
 
-  let match = category.length !== 0;
+  let match = search.includes("?category");
+
   if (isLoading) return <p className="Reviews">Be with you in a mo...</p>;
   if (err) return <p className="Reviews">{err}</p>;
   return (
     <main className="Reviews">
-      <h2>Reviews</h2>
+      <h2>Check out the Reivews below</h2>
       {match ? (
         <>
           <h2>{category} Games</h2>
         </>
-      ) : null}
+      ) : (
+        <h2>All Games</h2>
+      )}
       <ul className="ReviewList">
         {reviews.map((review) => {
           return (

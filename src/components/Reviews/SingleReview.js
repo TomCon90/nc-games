@@ -2,16 +2,13 @@ import { useParams } from "react-router-dom";
 import { getReviewsByReviewId, patchVotes } from "../../utils/api";
 import { useState, useEffect, useContext } from "react";
 import Comments from "./Comments";
-
 import { UserContext } from "../../contexts/user";
 
 export default function ReviewInfo() {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [addedVotes, setAddedVotes] = useState(0);
-  const [decreasedVotes, setDecreasedVotes] = useState(0);
   const [isError, setIsError] = useState(false);
-  const [downError, setDownError] = useState(false);
   const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -33,30 +30,34 @@ export default function ReviewInfo() {
   };
 
   const handleDownClick = () => {
-    setDecreasedVotes((prevVotes) => {
+    setAddedVotes((prevVotes) => {
       return prevVotes - 1;
     });
     patchVotes(review_id, -1).catch(() => {
-      setDownError(true);
-      setDecreasedVotes((prevVotes) => {
+      setIsError(true);
+      setAddedVotes((prevVotes) => {
         return prevVotes + 1;
       });
     });
   };
 
-  const isDisabled = addedVotes > 4 || currentUser.username === review.owner;
-  const downDisabled = decreasedVotes < -4 || review.votes < 1;
+  const isDisabled =
+    addedVotes > 4 ||
+    addedVotes < -4 ||
+    review.votes + addedVotes < 1 ||
+    currentUser.username === review.owner;
+
+  //want to use the below card so the user is presented by a capitalized category name, however having issues with where this should live in state
+
+  // const capitalized = review.category.charAt(0).toUpperCase() + review.category.slice(1);
 
   return (
     <main className="Reviews">
       <div className="ReviewCard">
         <h1>{review.title}</h1>
-        <p>
-          Category:
-          {review.category}
-        </p>
+        <p>Category: {review.category}</p>
         <p>{review.review_body}</p>
-        <p>Votes: {review.votes + addedVotes + decreasedVotes}</p>
+        <p>Votes: {review.votes + addedVotes}</p>
         <button
           onClick={handleClick}
           className="VoteButton"
@@ -64,11 +65,10 @@ export default function ReviewInfo() {
         >
           YES
         </button>
-        {downError ? <p>Something went wrong!</p> : null}
         <button
           onClick={handleDownClick}
           className="VoteButton"
-          disabled={downDisabled}
+          disabled={isDisabled}
         >
           NO
         </button>

@@ -30,6 +30,19 @@
   grid-area: nav;
   background-color: #ff8243;
   padding: 10px;
+  display: grid;
+
+  grid-template-areas: "home community sortby category login user img";
+}
+
+.NavSelector {
+  width: min-content;
+  height: min-content;
+}
+
+.NavSelector div {
+  display: grid;
+  grid-template-areas: "user img";
 }
 
 .Reviews {
@@ -116,4 +129,30 @@
   border-radius: 20px;
   max-height: 80px;
   max-width: 80px;
+}
+
+.userAvatarNav {
+  border-radius: 20px;
+  max-height: 40px;
+  max-width: 40px;
+}
+
+.PostComment {
+  padding: 30px;
+  margin: 30px;
+  border: solid pink 1px;
+  background-color: #ab6d23;
+}
+
+#CommentBox {
+  width: 200px;
+  height: 100px;
+}
+
+.CommentCard {
+  padding: 30px;
+  margin: 30px;
+  border: solid pink 1px;
+  background-color: #ab6d23;
+  list-style-type: none;
 }

@@ -6,7 +6,6 @@ import { UserContext } from "../../contexts/user";
 export default function CommentVoteHandler({ comment }) {
   const [addedVotes, setAddedVotes] = useState(0);
   const [isError, setIsError] = useState(false);
-  const [downError, setDownError] = useState(false);
   const { currentUser } = useContext(UserContext);
 
   const handleVoteClick = (comment_id) => {
@@ -26,7 +25,7 @@ export default function CommentVoteHandler({ comment }) {
       return prevVotes - 1;
     });
     patchCommentVotes(comment_id, -1).catch(() => {
-      setDownError(true);
+      setIsError(true);
       setAddedVotes((prevVotes) => {
         return prevVotes + 1;
       });
@@ -40,7 +39,11 @@ export default function CommentVoteHandler({ comment }) {
     deleteComment(comment_id);
   };
 
-  const isDisabled = addedVotes > 4 || currentUser.username === comment.author;
+  const isDisabled =
+    addedVotes > 4 ||
+    addedVotes < -4 ||
+    comment.votes + addedVotes < 1 ||
+    currentUser.username === comment.author;
   let match = currentUser.username === comment.author;
 
   return (
@@ -57,7 +60,6 @@ export default function CommentVoteHandler({ comment }) {
       >
         Upvote
       </button>
-      {isError ? <p>Something went wrong!</p> : null}
       <button
         onClick={() => {
           handleDownVoteClick(comment.comment_id);
@@ -67,8 +69,7 @@ export default function CommentVoteHandler({ comment }) {
       >
         Downvote
       </button>
-      {downError ? <p>Something went wrong!</p> : null}
-
+      {isError ? <p>Something went wrong!</p> : null}
       {match ? (
         <button
           type="submit"

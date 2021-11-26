@@ -19,7 +19,11 @@ export default function CategoryDropdown({
   };
 
   return (
-    <select onChange={handleSelect} value="Select Category">
+    <select
+      className="NavSelector"
+      onChange={handleSelect}
+      value="Select Category"
+    >
       <option selected={true} disabled>
         Select Category
       </option>

@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { getReviewsbyUsername, getUserbyUsername } from "../utils/api";
+import { getReviewsByUsername, getUserByUsername } from "../utils/api";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,7 @@ export default function UsersReviews() {
 
   useEffect(() => {
     setLoading(true);
-    getReviewsbyUsername(username)
+    getReviewsByUsername(username)
       .then((reviews) => {
         setLoading(false);
         setUserReviews(reviews);
@@ -30,7 +30,7 @@ export default function UsersReviews() {
 
   useEffect(() => {
     setLoading(true);
-    getUserbyUsername(username)
+    getUserByUsername(username)
       .then((user) => {
         setLoading(false);
         setUser(user);
