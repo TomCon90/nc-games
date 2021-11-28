@@ -86,7 +86,11 @@ export default function Comments() {
           {comments.map((comment) => {
             return (
               <section className="CommentCard">
-                <CommentVoteHandler comment={comment} />
+                <CommentVoteHandler
+                  comment={comment}
+                  comments={comments}
+                  setComments={setComments}
+                />
               </section>
             );
           })}

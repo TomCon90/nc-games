@@ -3,7 +3,7 @@ import { patchCommentVotes, deleteComment } from "../../utils/api";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user";
 
-export default function CommentVoteHandler({ comment }) {
+export default function CommentVoteHandler({ comment, comments, setComments }) {
   const [addedVotes, setAddedVotes] = useState(0);
   const [isError, setIsError] = useState(false);
   const { currentUser } = useContext(UserContext);
@@ -36,7 +36,14 @@ export default function CommentVoteHandler({ comment }) {
   //work to do on errors here
 
   const handleDelete = (comment_id) => {
-    deleteComment(comment_id);
+    const nonDelete = comments.filter((comment) => {
+      return comment.comment_id !== comment_id;
+    });
+    setComments(nonDelete);
+    deleteComment(comment_id).catch(() => {
+      setIsError(true);
+      setComments(comments);
+    });
   };
 
   const isDisabled =

@@ -71,13 +71,13 @@ Some really nice code here! Your layout and design is sensible and showcases the
 ​
 
 - [✓] Can only delete comments of logged in user
-- [ ] Deleted comments don’t re-appear on re-render/refresh - _delete not updating state_
+- [✓] Deleted comments don’t re-appear on re-render/refresh - _delete not updating state_
 - [✓] sort comments by date created / votes
 - [ ] navigate over pages of reviews (if implemented in back-end)
 - [ ] navigate over pages of comments (if implemented in back-end)
 - [ ] filter / display reviews by specific user
 - [ ] post new review
-- [ ] delete logged in user's reviews
+- [ ] ] delete logged in user's reviews
       ​
 
 ## Error Handling
@@ -87,8 +87,8 @@ Some really nice code here! Your layout and design is sensible and showcases the
 - [ ] Bad url
 - [ ] Bad category slug in url
 - [ ] Bad review*id in url - \_random review card*
-- [ ] Post comment: (No text in comment body / Can you post without logging in?)
-      ​
+- [✓] Post comment: (No text in comment body / Can you post without logging in?)
+  ​
 
 ## Code
 
@@ -96,7 +96,7 @@ Some really nice code here! Your layout and design is sensible and showcases the
 
 - [✓] Well named components
 - [✓] Components reused where possible (`Reviews` / `Voter`...)
-- [ ] Minimal state - don't hold derivable data in state
+- [✓] Minimal state - don't hold derivable data in state
 - [✓] Set state correctly, using previous state where possible
 - [✓] Handle asynchronicity clearly (i.e. isLoading pattern)
 - [✓] Functions are DRY (`handleChange` for controlled components / api calls)
@@ -104,8 +104,8 @@ Some really nice code here! Your layout and design is sensible and showcases the
 - [✓] Tidy? If not: ESLint / Prettier
 - [✓] `node_modules` git ignored
 - [✓] No `console.log`s / comments
-- [ ] remove unnecessary files (e.g. App.test.js)
-      ​
+- [✓] remove unnecessary files (e.g. App.test.js)
+  ​
 
 ## MAKE SURE ALL TESTS ARE STILL PASSING IN BACK END
 
