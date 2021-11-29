@@ -63,14 +63,14 @@ export default function ReviewInfo() {
           className="VoteButton"
           disabled={isDisabled}
         >
-          YES
+          ❤️
         </button>
         <button
           onClick={handleDownClick}
           className="VoteButton"
           disabled={isDisabled}
         >
-          NO
+          👎
         </button>
         {isError ? <p>Something went wrong!</p> : null}
         <img

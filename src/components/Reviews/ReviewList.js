@@ -19,13 +19,14 @@ export default function ReviewList({ reviews, setReviews, category }) {
       })
       .catch((err) => {
         setLoading(false);
-        if (err.response.status === 400) {
+        console.log(err.msg);
+        if (err.status === 400) {
           setErr("Try again! This Category Doesn't Exist");
         } else {
           setErr("Well this is embarrassing! Something has gone wrong!");
         }
       });
-  }, []);
+  }, [category]);
 
   useEffect(() => {
     setLoading(true);

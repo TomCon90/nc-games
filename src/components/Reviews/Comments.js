@@ -70,7 +70,7 @@ export default function Comments() {
     <div className="ReviewComments">
       <Expandable>
         <form className="PostComment">
-          <p> Write a comment </p>
+          <p> What's your view on this review... </p>
           <input
             type="text"
             name="comment"
@@ -79,7 +79,7 @@ export default function Comments() {
             required={true}
           ></input>
           <button type="submit" id="submit" onClick={handleClick}>
-            Submit
+            ✔️
           </button>
         </form>
         <ul className="CommentsList">

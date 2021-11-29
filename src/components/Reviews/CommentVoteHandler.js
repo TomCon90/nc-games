@@ -64,7 +64,7 @@ export default function CommentVoteHandler({ comment, comments, setComments }) {
         className="VoteButton"
         disabled={isDisabled}
       >
-        Upvote
+        ❤️
       </button>
       <button
         onClick={() => {
@@ -73,7 +73,7 @@ export default function CommentVoteHandler({ comment, comments, setComments }) {
         className="VoteButton"
         disabled={isDisabled}
       >
-        Downvote
+        👎
       </button>
       {isError ? <p>Something went wrong!</p> : null}
       {match ? (
@@ -83,7 +83,7 @@ export default function CommentVoteHandler({ comment, comments, setComments }) {
             handleDelete(comment.comment_id);
           }}
         >
-          Delete
+          🗑️
         </button>
       ) : null}
     </li>

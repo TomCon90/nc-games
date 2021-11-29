@@ -41,7 +41,7 @@ export default function Login() {
 
   // would like the option of logging in to remain after an incorrect user rater than only on the refresh
 
-  if (err) return <p>This User Doesn't Exist... yet!</p>;
+  if (err) return <p>{isError}</p>;
   return (
     <div className="NavSelector">
       <Expandable>
