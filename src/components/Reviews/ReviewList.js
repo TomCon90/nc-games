@@ -5,21 +5,26 @@ import { getReviews, getCategoriesByCategoryName } from "../../utils/api";
 export default function ReviewList({ reviews, setReviews, category }) {
   const [isLoading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
-  const [categoryName, setCategoryName] = useState({});
+  const [categoryName, setCategoryName] = useState({
+    slug: "All",
+    description: "All the reviews you could ever want to see",
+  });
   let { search } = useLocation();
 
-  //Would like to take hooks in to a separate file with more time
+  // Would like to take hooks in to a separate file with more time
+
+  // issues resetting state for when user navigates back to home page. Description of last category remains.
 
   useEffect(() => {
     setLoading(true);
+
     getCategoriesByCategoryName(category)
-      .then((categoryName) => {
+      .then((category) => {
         setLoading(false);
-        setCategoryName(categoryName);
+        setCategoryName(category);
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err.msg);
         if (err.status === 400) {
           setErr("Try again! This Category Doesn't Exist");
         } else {
@@ -41,9 +46,9 @@ export default function ReviewList({ reviews, setReviews, category }) {
       });
   }, [setReviews]);
 
-  //would like to conditionally render a description of the category below and use code above to capitalise the Title
+  //would like to conditionally render a description of the category below
 
-  let match = search.includes("?category");
+  let match = search.includes("?category") && category !== undefined;
 
   if (isLoading) return <p className="Reviews">Be with you in a mo...</p>;
   if (err) return <p className="Reviews">{err}</p>;
@@ -52,10 +57,14 @@ export default function ReviewList({ reviews, setReviews, category }) {
       <h2>Which Games are HOT and which are .... NOT!</h2>
       {match ? (
         <>
-          <h2>{category} Games</h2>
+          <h2 className="CategoryGames">{category} Games</h2>
+          <h3>{categoryName.description}</h3>
         </>
       ) : (
-        <h2>All Games</h2>
+        <>
+          <h2>All Games</h2>
+          <h3>All the reviews you could ever want to see</h3>
+        </>
       )}
       <ul className="ReviewList">
         {reviews.map((review) => {
@@ -67,7 +76,6 @@ export default function ReviewList({ reviews, setReviews, category }) {
               </Link>
               <p>Votes: {review.votes}</p>
               <p>Comments: {review.comment_count}</p>
-              {/* <p> Posted: {review.created_at}</p> */}
               <Link to={`/reviews/${review.review_id}`}>
                 <button>Read this review</button>
               </Link>

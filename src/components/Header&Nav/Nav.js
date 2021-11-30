@@ -6,9 +6,6 @@ import { UserContext } from "../../contexts/user";
 import LoginForm from "../Login/LoginForm";
 import SortBy from "../Login/SortBy";
 
-//Nav page is quite messy, would like to clean this up with hooks and further components separated into other files
-//Need to review whether I am duplicating state calls and if these can be accessed more easily
-
 export default function Nav({ reviews, setReviews, category, setCategory }) {
   const [categories, setCategories] = useState([]);
   const [isLoading, setLoading] = useState(true);

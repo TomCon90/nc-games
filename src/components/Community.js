@@ -20,8 +20,6 @@ export default function Community({ reviews }) {
       });
   }, []);
 
-  console.log(allUsers);
-
   //want to link this to the specific details for each user.
 
   if (isLoading) return <p className="Reviews">Be with you in a mo...</p>;

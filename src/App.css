@@ -69,19 +69,19 @@
     "img";
 }
 
-.ReviewCard h1 {
+.ReviewSnapshot h1 {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   grid-area: header;
 }
 
-.ReviewCard p {
+.ReviewSnapshot p {
   margin: 20px;
   font-family: sans-serif;
   font-size: 15px;
   grid-area: p;
 }
 
-.ReviewCard .Reviews button {
+.ReviewSnapshot .Reviews button {
   background-color: aqua;
   font-size: 40;
   width: min-content;
@@ -90,9 +90,13 @@
   grid-area: button;
 }
 
-.ReviewCard img {
+.ReviewSnapshot img {
   border-radius: 10px;
   grid-area: img;
+}
+
+.CategoryGames {
+  text-transform: capitalize;
 }
 
 .ReviewList {

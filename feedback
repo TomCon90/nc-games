@@ -12,12 +12,12 @@ Some really nice code here! Your layout and design is sensible and showcases the
 
 ​
 
-- [ ] has a link to the deployed version
-- [ ] provides general info about your app
-- [ ] includes links to your back end repo
-- [ ] specifies the minimum version of Node required to run locally (check your Node version, `node --version` and use the major version that you are on)
-- [ ] has clear instructions on how to run your project locally (`git clone <repo-url>, cd ...`)
-      ​
+- [✓] has a link to the deployed version
+- [✓] provides general info about your app
+- [✓] includes links to your back end repo
+- [✓] specifies the minimum version of Node required to run locally (check your Node version, `node --version` and use the major version that you are on)
+- [✓] has clear instructions on how to run your project locally (`git clone <repo-url>, cd ...`)
+  ​
 
 ## UX
 
@@ -27,8 +27,8 @@ Some really nice code here! Your layout and design is sensible and showcases the
 - [✓] Responsive design
 - [✓] Items aligned - _consider centering your flex children_
 - [✓] Content legible (not too wide, obstructed, etc)
-- [ ] Refreshing doesn’t cause an issue on sub-pages
-- [ ] No errors in the console - _few errors_
+- [✓] Refreshing doesn’t cause an issue on sub-pages
+- [✓] No errors in the console
 - [✓] Votes / Posts / Deletions happen instantly _OR_ give user indication of loading
   ​
 

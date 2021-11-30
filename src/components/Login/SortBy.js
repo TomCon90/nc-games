@@ -15,11 +15,9 @@ export default function SortBy({ setReviews }) {
     navigate(`/reviews?sort_by=${e.target.value}`);
   };
 
-  //issues with backend on requesting comment_count. Plan to fix this during the review but unable at this point to sort by this
-
   return (
     <select className="NavSelector" onChange={handleSelect} value="SortBy">
-      <option selected={true} disabled>
+      <option defaultValue={true} disabled>
         SortBy
       </option>
       <option key="Date" value="created_at">
