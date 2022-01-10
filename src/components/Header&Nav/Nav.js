@@ -68,8 +68,8 @@ export default function Nav({ reviews, setReviews, category, setCategory }) {
           category={category}
         />
       ) : null}
-      <div className="NavSelector">
-        <p className="NavSelector"> User: {currentUser.username} </p>
+      <div className="User">
+        <p> User: {currentUser.username} </p>
         <img
           src={currentUser.avatar_url}
           alt={currentUser.username}

@@ -117,7 +117,7 @@ Some really nice code here! Your layout and design is sensible and showcases the
 
 - [ ] Use `aXe` extension to check for a11y issues
 - [ ] Make sure any pure functions are extracted and tested with `Jest`
-- [ ] Use Context API for sharing logged in user amongst components
+- [✓] Use Context API for sharing logged in user amongst components
 - [ ] Create a user page where you can change their profile information if they are "logged in as the right user". This will require having an additional PATCH endpoint on your backend
 - [ ] Create a view for all the reviews a user has liked. This will require additional functionality on your backend
 - [ ] Make use of [web sockets](https://en.wikipedia.org/wiki/WebSocket) to allow your page to automatically update with a little notification if there have been any recent posts. [socket.io](https://socket.io/) is quite a good one to use and has some good getting started guides. This will require additional functionality on your backend for recent reviews e.g. last 10 minutes

@@ -18,6 +18,7 @@ export const getAllUsers = () => {
 
 export const getReviews = () => {
   return hallofgameApi.get(`/reviews`).then((res) => {
+    console.log(res.data, "res.data");
     return res.data.reviews;
   });
 };
@@ -102,6 +103,29 @@ export const postComment = (review_id, comment) => {
   // comment.author = comment.username;
   return hallofgameApi
     .post(`/reviews/${review_id}/comments`, comment)
+    .then((res) => {
+      return res.data;
+    });
+};
+
+export const postReview = (review) => {
+  console.log("HERE WE ARE");
+  console.log(review);
+  return hallofgameApi.post("/reviews", review).then((res) => {
+    console.log("I AM HERE");
+    return res.data;
+  });
+};
+
+export const postCategory = (category) => {
+  return hallofgameApi.post("/categories", category).then((res) => {
+    return res.data;
+  });
+};
+
+export const deleteReview = (review_id) => {
+  return hallofgameApi
+    .delete(`/reviews/${review_id}`, review_id)
     .then((res) => {
       return res.data;
     });

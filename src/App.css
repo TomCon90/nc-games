@@ -29,13 +29,26 @@
   border: solid blue 1px;
   grid-area: nav;
   background-color: #ff8243;
-  padding: 10px;
+  padding: 13px;
   display: grid;
-
   grid-template-areas: "home community sortby category login user img";
 }
 
+.Nav button {
+  font-size: 17px;
+  margin: 30px;
+}
+
+.User {
+  border: solid blue 1px;
+}
+
+.User p {
+  font-size: 15px;
+}
+
 .NavSelector {
+  font-size: 17px;
   width: min-content;
   height: min-content;
 }
@@ -55,34 +68,29 @@
   grid-area: main;
 }
 
-.ReviewCard {
-  padding: 30px;
-  margin: 30px;
-  border: solid pink 1px;
+.ReviewSnapshot {
+  border: solid black 2px;
   background-color: #ab6d23;
-  grid-template-areas:
-    "header header"
-    "p"
-    "p"
-    "p"
-    "button button"
-    "img";
+  margin: 5px;
+  width: 400px;
+  padding: 10px;
+  grid-template-rows: 50px min-content min-content min-content min-content min-content;
 }
 
-.ReviewSnapshot h1 {
+.ReviewSnapshot h3 {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   grid-area: header;
+  font-size: 20px;
 }
 
 .ReviewSnapshot p {
   margin: 20px;
   font-family: sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   grid-area: p;
 }
 
-.ReviewSnapshot .Reviews button {
-  background-color: aqua;
+.ReviewSnapshot button {
   font-size: 40;
   width: min-content;
   margin-left: 50%;
@@ -102,13 +110,6 @@
 .ReviewList {
   display: flex;
   flex-wrap: wrap;
-}
-
-.ReviewSnapshot {
-  border: solid black 2px;
-  background-color: #ab6d23;
-  margin: 5px;
-  width: 400px;
 }
 
 .HomeReviewImage {

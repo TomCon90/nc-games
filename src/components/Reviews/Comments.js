@@ -32,7 +32,7 @@ export default function Comments() {
   //expanded section closes when changed. Would like to fix this.
 
   const Expandable = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const toggleIsOpen = () => setIsOpen((prevIsOpen) => !prevIsOpen);
 
     return (
@@ -50,6 +50,7 @@ export default function Comments() {
 
   const handleClick = (e) => {
     e.preventDefault();
+
     const newComment = {
       body: e.target.form[0].value,
       votes: 0,
@@ -71,13 +72,13 @@ export default function Comments() {
       <Expandable>
         <form className="PostComment">
           <p> What's your view on this review... </p>
-          <input
+          <textarea
             type="text"
             name="comment"
             id="CommentBox"
             placeholder="comment"
             required={true}
-          ></input>
+          ></textarea>
           <button type="submit" id="submit" onClick={handleClick}>
             ✔️
           </button>
